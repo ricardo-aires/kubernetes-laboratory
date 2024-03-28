@@ -1,0 +1,22 @@
+---
+listeners:
+  client:
+    protocol: PLAINTEXT
+  external:
+    protocol: PLAINTEXT
+metrics:
+  kafka:
+    enabled: true
+  jmx:
+    enabled: true
+
+externalAccess:
+  enabled: true
+  controller:
+    service:
+      type: NodePort
+      domain: localhost
+      nodePorts:
+      - 30860
+      - 30861
+      - 30862

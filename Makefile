@@ -2,7 +2,7 @@
 
 # Variables
 BREW := /opt/homebrew/bin/brew
-K8s_PROVIDER := minikube
+K8s_PROVIDER := kind
 PODMAN_MACHINE_NAME := podman-local-k8s
 PODMAN_CPUS := 4
 PODMAN_DISK := 100

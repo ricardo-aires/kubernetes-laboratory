@@ -1,4 +1,5 @@
 brew "helm"
 brew "kind"
 brew "kubernetes-cli"
+brew "minikube"
 brew "podman"

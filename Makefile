@@ -57,7 +57,7 @@ setup_cluster: install_deps
 # Target to destroy Podman virtual machine and Kind cluster
 cleanup:
 	@echo "Destroying Kind cluster..."
-	@if kind get clusters -q | grep -q 'local-k8s'; then \
+	@if KIND_EXPERIMENTAL_PROVIDER=podman kind get clusters -q | grep -q 'local-k8s'; then \
 		KIND_EXPERIMENTAL_PROVIDER=podman kind delete cluster --name local-k8s; \
 	else \
 		echo "Kind cluster not found."; \

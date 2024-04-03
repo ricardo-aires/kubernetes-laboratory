@@ -5,7 +5,7 @@ name: local-k8s
 nodes:
   - role: control-plane
     extraPortMappings:
-    - containerPort:  
+    - containerPort: 30000
       hostPort: 30000
       listenAddress: "127.0.0.1"
       protocol: TCP

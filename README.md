@@ -16,6 +16,8 @@ When it comes to deploying a local Kubernetes cluster, there are several options
 
 Considering our use case in a laboratory setting, where developers require fast and efficient Kubernetes cluster provisioning for testing purposes, our preferred solution is kind. Its simplicity, ease of use, and minimal overhead make it the optimal choice for our environment.
 
+If one is using this for a more robust proof of concept change the variable `K8s_PROVIDER` on the `Makefile` to `minikube`.
+
 ### Kafka Helm Chart Comparison
 
 When setting up Kafka on a Kubernetes cluster for testing purposes, selecting the right Helm chart depends on your specific needs. Considerations include additional components like Kafka Connect or Schema Registry, as well as community support and update frequency. Below is a comparison based on available sources:
@@ -134,6 +136,16 @@ kind create cluster --config=kind-cluster.yaml
 
 This command will use the specified configuration file to create and configure the Kind cluster according to your specifications.
 
+### Creating a Minikube Cluster
+
+With Podman running, we can utilise it as a provider to create a minikube cluster on top of it.
+
+To create the minikube with some configurations needed for this use case, simply execute the following command:
+
+```bash
+minikube start --memory=max --cpus=max --disk-size=60g --ports=30000-30001:30000-30001,30860-30862:30860-30862 --driver=podman --container-runtime=cri-o --profile=k8s-local
+```
+
 ## Kafka Deployment with Bitnami Helm Chart
 
 This repository contains the configuration for deploying Kafka using the Bitnami Helm chart on a Kubernetes cluster. It includes settings for listeners, metrics, and external access.
@@ -240,6 +252,8 @@ Once `make` is installed and confirmed to be available, navigate to the director
 
 - `make install_deps`: Installs dependencies listed in the Brewfile.
 - `make setup_cluster`: Creates a Podman virtual machine and a Kind cluster.
+- `stop_cluster`: Stop Podman and Minikube.
+- `start_cluster`: Stop Podman and Minikube.
 - `make deploy_kafka`: Deploys Kafka using Helm.
 - `make deploy_prometheus`: Deploys Prometheus using Helm.
 - `make deploy_grafana`: Deploys Grafana using Helm.

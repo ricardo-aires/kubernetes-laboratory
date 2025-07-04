@@ -1,0 +1,39 @@
+executor: "KubernetesExecutor"
+
+airflow:
+  image:
+    repository: docker.io/apache/airflow
+
+web:
+  service:
+    type: NodePort
+    nodePort:
+      http: 30870
+
+postgresql:
+  enabled: true
+  primary:
+    persistence:
+      enabled: false
+
+redis:
+  enabled: true
+  master:
+    persistence:
+      enabled: false
+
+dags:
+  persistence:
+    enabled: true
+    accessMode: ReadWriteMany
+
+logs:
+  persistence:
+    enabled: false
+
+triggerer:
+  enabled: false
+
+flower:
+  enabled: false
+

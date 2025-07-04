@@ -227,6 +227,27 @@ helm install my-grafana grafana/grafana -f values.yaml
 
 Grafana is exposed externally via NodePort on port `30000`. Access Grafana by navigating to `http://<node-ip>:30000` in your web browser.
 
+## Airflow Deployment with Community Helm Chart
+
+This repository includes configuration for deploying Apache Airflow using the official community Helm chart. This setup enables orchestration of DAG-based workflows in a local Kubernetes environment using a shared ReadWriteMany PVC so that DAGs are available to all components (scheduler, worker, webserver).
+
+If not already added, add the Apache Airflow Helm repository:
+
+```bash
+helm repo add airflow-stable https://airflow-helm.github.io/charts
+helm repo update
+```
+
+Deploy Airflow using the provided `airflow.yaml` file:
+
+```bash
+helm upgrade --install airflow -f airflow.yaml apache-airflow/airflow
+```
+
+Airflow is exposed externally via NodePort on port 30870. You can access the Airflow UI at:
+
+- `http://localhost:30870`
+
 ## Makefile
 
 To streamline the installation, configuration, and setup of various tools, we have included a `Makefile` in this repository. Before using the `Makefile`, ensure that `make` is available on your system. If you have Brew installed, you can install `make` by running:
@@ -257,6 +278,7 @@ Once `make` is installed and confirmed to be available, navigate to the director
 - `make deploy_kafka`: Deploys Kafka using Helm.
 - `make deploy_prometheus`: Deploys Prometheus using Helm.
 - `make deploy_grafana`: Deploys Grafana using Helm.
+- `make deploy_airflow`: Deploys Airflow using Helm.
 - `make all`: execute the above in a group.
 - `make cleanup`: Stops and removes the Kind cluster and the Podman VM.
 

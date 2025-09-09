@@ -241,7 +241,7 @@ helm repo update
 Deploy Airflow using the provided `airflow.yaml` file:
 
 ```bash
-helm upgrade --install airflow -f airflow.yaml apache-airflow/airflow
+helm upgrade --install airflow -f airflow.yaml airflow-stable/airflow
 ```
 
 Airflow is exposed externally via NodePort on port 30870. You can access the Airflow UI at:
@@ -289,3 +289,4 @@ Contributions are welcome!
 ## License
 
 This project is open source. See the LICENSE file for details.
+
